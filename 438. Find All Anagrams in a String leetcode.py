@@ -19,5 +19,21 @@ class Solution:
         return result
   
   
+# other method
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        result = []
+        # s = "cbaebabacd", p = "abc"
+        tarWin=collections.Counter(p)
+        currentWin=collections.Counter(s[:len(p)-1])
+        for i in range(len(p)-1,len(s)):
+            currentWin[s[i]]+=1
+            if tarWin==currentWin:
+                result.append(i-len(p)+1)
+                # currentWin[s[i-len(p)+1]]-=1
+            currentWin[s[i-len(p)+1]]-=1
+            if currentWin[s[i-len(p)+1]]==0:
+                del currentWin[s[i-len(p)+1]]
+        return result
   
 #   https://leetcode.com/problems/longest-substring-without-repeating-characters/
