@@ -9,18 +9,20 @@ for _ in range(n):
 sources = []
 sinks = []
 
-for i in range(1, n+1):
+for i in range(n):
     is_source = True
     is_sink = True
-    for j in range(1, n+1):
-        if adj_matrix[j-1][i-1] == 1:
+    for j in range(n):
+        if adj_matrix[j][i] == 1:
             is_source = False
-        if adj_matrix[i-1][j-1] == 1:
+        if adj_matrix[i][j] == 1:
             is_sink = False
     if is_source:
-        sources.append(i)
+        sources.append(i + 1)
     if is_sink:
-        sinks.append(i)
+        sinks.append(i + 1)
 
-print(len(sources), *sources)
-print(len(sinks), *sinks)
+print(len(sources), end=' ')
+print(' '.join(map(str, sources)))
+print(len(sinks), end=' ')
+print(' '.join(map(str, sinks)))
